@@ -1,5 +1,5 @@
 package dev.mcd.untitledcaloriesapp.domain.calories.interactor
 
-interface CreateCalorieEntryForToday {
+interface SaveCalorieEntryForToday {
     suspend fun execute(amount: Int)
 }

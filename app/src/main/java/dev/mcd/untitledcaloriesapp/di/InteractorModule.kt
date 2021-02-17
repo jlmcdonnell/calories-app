@@ -7,9 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import dev.mcd.untitledcaloriesapp.data.auth.interactor.IsAuthenticatedImpl
 import dev.mcd.untitledcaloriesapp.data.auth.interactor.LoginImpl
 import dev.mcd.untitledcaloriesapp.data.auth.interactor.SignUpImpl
-import dev.mcd.untitledcaloriesapp.data.calories.interactor.CreateCalorieEntryForTodayImpl
 import dev.mcd.untitledcaloriesapp.data.calories.interactor.GetCalorieEntryForTodayImpl
 import dev.mcd.untitledcaloriesapp.data.calories.interactor.GetWeeklyOverviewImpl
+import dev.mcd.untitledcaloriesapp.data.calories.interactor.SaveCalorieEntryForTodayImpl
 import dev.mcd.untitledcaloriesapp.data.prefs.interactor.GetAccessTokenImpl
 import dev.mcd.untitledcaloriesapp.data.prefs.interactor.GetUserPrefsImpl
 import dev.mcd.untitledcaloriesapp.data.prefs.interactor.SetUserCredentialsImpl
@@ -17,9 +17,9 @@ import dev.mcd.untitledcaloriesapp.data.prefs.interactor.SetUserPendingConfirmat
 import dev.mcd.untitledcaloriesapp.domain.auth.interactor.IsAuthenticated
 import dev.mcd.untitledcaloriesapp.domain.auth.interactor.Login
 import dev.mcd.untitledcaloriesapp.domain.auth.interactor.SignUp
-import dev.mcd.untitledcaloriesapp.domain.calories.interactor.CreateCalorieEntryForToday
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetCalorieEntryForToday
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetWeeklyOverview
+import dev.mcd.untitledcaloriesapp.domain.calories.interactor.SaveCalorieEntryForToday
 import dev.mcd.untitledcaloriesapp.domain.prefs.interactor.GetAccessToken
 import dev.mcd.untitledcaloriesapp.domain.prefs.interactor.GetUserPrefs
 import dev.mcd.untitledcaloriesapp.domain.prefs.interactor.SetUserCredentials
@@ -47,7 +47,7 @@ abstract class InteractorModule {
      */
 
     @Binds
-    abstract fun createCalorieEntryForToday(impl: CreateCalorieEntryForTodayImpl): CreateCalorieEntryForToday
+    abstract fun saveCalorieEntryForToday(impl: SaveCalorieEntryForTodayImpl): SaveCalorieEntryForToday
 
     @Binds
     abstract fun getCalorieEntryForToday(impl: GetCalorieEntryForTodayImpl): GetCalorieEntryForToday

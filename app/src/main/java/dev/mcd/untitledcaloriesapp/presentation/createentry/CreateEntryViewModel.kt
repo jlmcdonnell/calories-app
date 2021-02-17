@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.mcd.untitledcaloriesapp.domain.calories.interactor.CreateCalorieEntryForToday
+import dev.mcd.untitledcaloriesapp.domain.calories.interactor.SaveCalorieEntryForToday
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetCalorieEntryForToday
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetCalorieEntryForToday.Result.CalorieEntry
 import dev.mcd.untitledcaloriesapp.presentation.createentry.CreateEntryViewModel.Events.*
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateEntryViewModel @Inject constructor(
-    private val createCalorieEntryForToday: CreateCalorieEntryForToday,
+    private val saveCalorieEntryForToday: SaveCalorieEntryForToday,
     private val getCalorieEntryForToday: GetCalorieEntryForToday,
 ) : ViewModel() {
 
@@ -51,7 +51,7 @@ class CreateEntryViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 runCatching {
-                    createCalorieEntryForToday.execute(amount)
+                    saveCalorieEntryForToday.execute(amount)
                 }.onSuccess {
                     events.postValue(Dismiss)
                 }.onFailure {
