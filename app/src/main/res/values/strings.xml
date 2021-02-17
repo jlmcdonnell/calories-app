@@ -9,12 +9,12 @@
     <string name="authenticate_login_error">Error logging in</string>
     <string name="authenticate_error_no_input">Please enter an email and password</string>
 
-    <string name="confirm_email_title">Confirm your email to get free Diet Pepsi</string>
+    <string name="confirm_email_title">Confirm your email</string>
 
     <string name="confirmed_title">Email confirmed! You\'re part of the future now.</string>
     <string name="confirmed_get_started">Get Started</string>
 
-    <string name="create_entry_title_no_calories">Let\'s see those numbers, baby</string>
+    <string name="create_entry_title_no_calories">Let\'s see those numbers</string>
     <string name="create_entry_title_calories">You\'ve had %d calories today</string>
     <string name="create_entry_cta_add">Add Entry</string>
     <string name="create_entry_calories">Calories</string>
