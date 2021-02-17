@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Untitled Calories App</string>
+
+    <string name="authenticated_email_address">Email address</string>
+    <string name="authenticated_password">Password</string>
+    <string name="authenticate_sign_up">Sign Up</string>
+    <string name="authenticate_login">Login</string>
+    <string name="authenticate_sign_up_error">Error signing up</string>
+    <string name="authenticate_login_error">Error logging in</string>
+    <string name="authenticate_error_no_input">Please enter an email and password</string>
+
+    <string name="confirm_email_title">Confirm your email to get free Diet Pepsi</string>
+
+    <string name="confirmed_title">Email confirmed! You\'re part of the future now.</string>
+    <string name="confirmed_get_started">Get Started</string>
+
+    <string name="create_entry_title_no_calories">Let\'s see those numbers, baby</string>
+    <string name="create_entry_title_calories">You\'ve had %d calories today</string>
+    <string name="create_entry_cta_add">Add Entry</string>
+    <string name="create_entry_calories">Calories</string>
+    <string name="create_entry_error">Error creating entry</string>
+    <string name="create_entry_cta_update">Update Entry</string>
+
+    <string name="home_add_entry">Add Entry</string>
+
+    <string-array name="weekly_overview_day_labels">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+</resources>

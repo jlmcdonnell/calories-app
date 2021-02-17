@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_graph"
+    app:startDestination="@id/authenticate">
+
+    <fragment
+        android:id="@+id/authenticate"
+        android:name="dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateFragment">
+        <action
+            android:id="@+id/authenticateToConfirm"
+            app:destination="@id/confirmEmail" />
+
+        <action
+            android:id="@+id/authenticateToHome"
+            app:destination="@+id/nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmEmail"
+        android:name="dev.mcd.untitledcaloriesapp.presentation.auth.confirm.ConfirmEmailFragment" />
+
+    <fragment
+        android:id="@+id/emailConfirmed"
+        android:name="dev.mcd.untitledcaloriesapp.presentation.auth.confirmed.EmailConfirmedFragment">
+        <action
+            android:id="@+id/confirmedToHome"
+            app:destination="@+id/auth_graph"
+            app:popUpTo="@id/auth_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
