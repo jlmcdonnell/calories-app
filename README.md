@@ -13,12 +13,12 @@ Simple calorie tracker app using supabase.io as a backend
 
 - Set a daily calorie target
 - Set a target weight
-- View Historic data
+- View historic data
 - Track changes in weight
 
 ## Built Using
 - Kotlin Coroutines
-- [Jetpack Navigation](https://developer.android.com/guide/navigation]
+- [Jetpack Navigation](https://developer.android.com/guide/navigation)
 - Persists preferences and settings with: [Jetpack DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
 - Dependency Injection using [Dagger Hilt](https://dagger.dev/hilt/)
 - MVVM & Clean Architecture
