@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.mcd.untitledcaloriesapp.data.calories.api.CaloriesApi
 import dev.mcd.untitledcaloriesapp.data.calories.api.CaloriesApiImpl
-import dev.mcd.untitledcaloriesapp.data.common.di.Authenticated
+import dev.mcd.untitledcaloriesapp.data.common.api.di.Authenticated
 import retrofit2.Retrofit
 
 @Module

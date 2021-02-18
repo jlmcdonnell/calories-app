@@ -1,4 +1,4 @@
-package dev.mcd.untitledcaloriesapp.domain.env
+package dev.mcd.untitledcaloriesapp.data.env
 
 interface Environment {
     val supabaseUrl: String

@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.mcd.untitledcaloriesapp.domain.auth.interactor.IsAuthenticated
-import dev.mcd.untitledcaloriesapp.domain.auth.interactor.IsAuthenticated.Result.NotAuthenticated
+import dev.mcd.untitledcaloriesapp.domain.auth.interactor.GetAuthenticationState
+import dev.mcd.untitledcaloriesapp.domain.auth.entity.AuthenticationState.NotAuthenticated
 import dev.mcd.untitledcaloriesapp.domain.calories.entity.WeeklyOverview
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetWeeklyOverview
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val isAuthenticated: IsAuthenticated,
+    private val getAuthenticationState: GetAuthenticationState,
     private val getWeeklyOverview: GetWeeklyOverview,
 ) : ViewModel() {
 
@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
-                    if (isAuthenticated.execute() == NotAuthenticated) {
+                    if (getAuthenticationState.execute() == NotAuthenticated) {
                         events.postValue(Events.ShowAuthentication)
                     } else {
                         val overview = getWeeklyOverview.execute()

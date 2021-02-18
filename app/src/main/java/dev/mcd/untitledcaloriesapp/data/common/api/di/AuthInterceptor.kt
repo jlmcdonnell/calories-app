@@ -1,4 +1,4 @@
-package dev.mcd.untitledcaloriesapp.data.common.di
+package dev.mcd.untitledcaloriesapp.data.common.api.di
 
 import javax.inject.Qualifier
 

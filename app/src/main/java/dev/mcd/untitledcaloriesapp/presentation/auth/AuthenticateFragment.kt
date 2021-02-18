@@ -12,7 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.mcd.untitledcaloriesapp.R
 import dev.mcd.untitledcaloriesapp.databinding.AuthenticateFragmentBinding
 import dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateFragmentDirections.authenticateToHome
-import dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateViewModel.Events
+import dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateViewModel.Events.ShowHome
+import dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateViewModel.Events.ShowLoginError
+import dev.mcd.untitledcaloriesapp.presentation.auth.AuthenticateViewModel.Events.ShowSignUpError
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -33,9 +35,9 @@ class AuthenticateFragment : Fragment(R.layout.authenticate_fragment) {
         lifecycleScope.launch {
             viewModel.events.collect {
                 when (it) {
-                    is Events.ShowHome -> findNavController().navigate(authenticateToHome())
-                    is Events.ShowLoginError -> showError(it.cause, R.string.authenticate_login_error)
-                    is Events.ShowSignUpError -> showError(it.cause, R.string.authenticate_sign_up_error)
+                    is ShowHome -> findNavController().navigate(authenticateToHome())
+                    is ShowLoginError -> showError(it.cause, R.string.authenticate_login_error)
+                    is ShowSignUpError -> showError(it.cause, R.string.authenticate_sign_up_error)
                 }
             }
         }

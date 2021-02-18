@@ -1,14 +1,14 @@
-package dev.mcd.untitledcaloriesapp.data.common.di
+package dev.mcd.untitledcaloriesapp.data.common.api.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.mcd.untitledcaloriesapp.data.auth.api.AuthApi
+import dev.mcd.untitledcaloriesapp.data.auth.store.AccessTokenStore
 import dev.mcd.untitledcaloriesapp.data.common.AuthTokenInterceptor
-import dev.mcd.untitledcaloriesapp.domain.env.Environment
-import dev.mcd.untitledcaloriesapp.domain.prefs.interactor.GetAccessToken
-import dev.mcd.untitledcaloriesapp.domain.prefs.interactor.SetUserCredentials
+import dev.mcd.untitledcaloriesapp.data.env.Environment
+import dev.mcd.untitledcaloriesapp.domain.common.time.TimeProvider
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,12 +20,8 @@ class ApiModule {
 
     @Provides
     @AuthInterceptor
-    fun authInterceptor(
-        authApi: AuthApi,
-        getAccessToken: GetAccessToken,
-        setUserCredentials: SetUserCredentials,
-    ): Interceptor {
-        return AuthTokenInterceptor(getAccessToken, setUserCredentials, authApi)
+    fun authInterceptor(accessTokenStore: AccessTokenStore, authApi: AuthApi, timeProvider: TimeProvider): Interceptor {
+        return AuthTokenInterceptor(accessTokenStore, authApi, timeProvider)
     }
 
     @Provides
