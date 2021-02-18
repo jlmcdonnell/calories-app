@@ -1,3 +1,5 @@
+![CI](https://github.com/jlmcdonnell/calories-app/workflows/CI/badge.svg)
+
 **Demo purposes only, please use a fake email if signing up**
 
 Simple calorie tracker app using supabase.io as a backend
