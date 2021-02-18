@@ -21,7 +21,7 @@ class WeeklyOverviewView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    var goal: Int = 0
+    var limit: Int = 0
         set(value) {
             field = value
             updateDayValues()
@@ -46,7 +46,6 @@ class WeeklyOverviewView @JvmOverloads constructor(
     init {
         inflate(context, R.layout.weekly_overview, this)
         binding = WeeklyOverviewBinding.bind(this)
-        setupChart()
     }
 
     private fun updateDayValues() {
@@ -54,11 +53,12 @@ class WeeklyOverviewView @JvmOverloads constructor(
             Entry(i.toFloat(), j.toFloat())
         }
         val dataSet = LineDataSet(yValues, "Weekly Overview").also(this::styleDataSet)
-
         with(binding.lineChart) {
             data = LineData(dataSet)
             invalidate()
         }
+
+        setupChart()
     }
 
     private fun styleDataSet(dataSet: LineDataSet) {
@@ -99,7 +99,7 @@ class WeeklyOverviewView @JvmOverloads constructor(
                 setDrawGridLinesBehindData(false)
                 removeAllLimitLines()
                 addLimitLine(
-                    LimitLine(1500f, null).apply {
+                    LimitLine(limit.toFloat(), null).apply {
                         lineColor = ContextCompat.getColor(context, R.color.purple_700)
                         enableDashedLine(16f, 8f, 4f)
                         lineWidth = 1.5f

@@ -1,7 +1,7 @@
 package dev.mcd.untitledcaloriesapp.domain.calories.interactor
 
-import dev.mcd.untitledcaloriesapp.domain.calories.entity.WeeklyOverview
+import dev.mcd.untitledcaloriesapp.domain.calories.entity.WeekOverview
 
 interface GetWeeklyOverview {
-    suspend fun execute(): WeeklyOverview
+    suspend fun execute(): WeekOverview
 }

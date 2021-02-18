@@ -1,7 +1,5 @@
 package dev.mcd.untitledcaloriesapp.data.env
 
-import dev.mcd.untitledcaloriesapp.domain.env.Environment
-
 class Production : Environment {
     override val supabaseUrl = "https://snslzklbzdwjbbiwbrma.supabase.co"
     override val supabaseApiKey =
