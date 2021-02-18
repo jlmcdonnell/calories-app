@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="@string/create_entry_calories"
-        android:inputType="number"
         android:imeOptions="actionDone"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/caloriesToday" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/createEntryButton"
+        android:id="@+id/saveEntryButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +38,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amountText"
-        tools:text="@string/create_entry_cta_add" />
+        android:text="@string/create_entry_cta_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

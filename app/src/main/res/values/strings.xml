@@ -16,12 +16,15 @@
 
     <string name="create_entry_title_no_calories">Let\'s see those numbers</string>
     <string name="create_entry_title_calories">You\'ve had %d calories today</string>
-    <string name="create_entry_cta_add">Add Entry</string>
+    <string name="create_entry_cta_save">Save Entry</string>
     <string name="create_entry_calories">Calories</string>
     <string name="create_entry_error">Error creating entry</string>
     <string name="create_entry_cta_update">Update Entry</string>
 
-    <string name="home_add_entry">Add Entry</string>
+    <string name="home_entry_cta_add">Add Entry</string>
+    <string name="home_entry_cta_update">Update Entry</string>
+    <string name="home_limit">%d calories remaining today</string>
+    <string name="home_error">Error loading data</string>
 
     <string-array name="weekly_overview_day_labels">
         <item>Mon</item>

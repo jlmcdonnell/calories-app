@@ -4,10 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetOverviewToday
 import dev.mcd.untitledcaloriesapp.domain.calories.interactor.SaveCalorieEntryForToday
-import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetCalorieEntryForToday
-import dev.mcd.untitledcaloriesapp.domain.calories.interactor.GetCalorieEntryForToday.Result.CalorieEntry
-import dev.mcd.untitledcaloriesapp.presentation.createentry.CreateEntryViewModel.Events.*
+import dev.mcd.untitledcaloriesapp.presentation.createentry.SaveEntryViewModel.Events.Dismiss
+import dev.mcd.untitledcaloriesapp.presentation.createentry.SaveEntryViewModel.Events.ShowCaloriesToday
+import dev.mcd.untitledcaloriesapp.presentation.createentry.SaveEntryViewModel.Events.ShowCreateError
+import dev.mcd.untitledcaloriesapp.presentation.createentry.SaveEntryViewModel.Events.ShowNoCaloriesToday
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,9 +17,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateEntryViewModel @Inject constructor(
+class SaveEntryViewModel @Inject constructor(
     private val saveCalorieEntryForToday: SaveCalorieEntryForToday,
-    private val getCalorieEntryForToday: GetCalorieEntryForToday,
+    private val getOverviewToday: GetOverviewToday,
 ) : ViewModel() {
 
     sealed class Events {
@@ -33,13 +35,13 @@ class CreateEntryViewModel @Inject constructor(
         events = MutableLiveData()
         viewModelScope.launch {
             runCatching {
-                val caloriesToday = withContext(Dispatchers.IO) {
-                    getCalorieEntryForToday.execute()
+                val overview = withContext(Dispatchers.IO) {
+                    getOverviewToday.execute()
                 }
-                if (caloriesToday is CalorieEntry) {
-                    events.postValue(ShowCaloriesToday(caloriesToday.calories))
-                } else {
+                if (overview.hasAddedEntryToday) {
                     events.postValue(ShowNoCaloriesToday)
+                } else {
+                    events.postValue(ShowCaloriesToday(overview.caloriesConsumed))
                 }
             }.onFailure {
                 Timber.e(it, "retrieving calorie entry")

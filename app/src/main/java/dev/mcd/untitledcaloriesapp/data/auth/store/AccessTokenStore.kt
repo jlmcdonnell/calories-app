@@ -41,7 +41,9 @@ class AccessTokenStoreImpl(context: Context) : AccessTokenStore {
     }
 
     override suspend fun clear() {
-        dataStore.data.first().toMutablePreferences().clear()
+        dataStore.edit {
+            it.clear()
+        }
     }
 
     override suspend fun tokenChanges(): Flow<AccessToken?> {

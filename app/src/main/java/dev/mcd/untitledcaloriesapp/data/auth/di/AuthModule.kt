@@ -11,15 +11,15 @@ import dev.mcd.untitledcaloriesapp.data.auth.api.AuthApiImpl
 import dev.mcd.untitledcaloriesapp.data.auth.store.AccessTokenStore
 import dev.mcd.untitledcaloriesapp.data.auth.store.AccessTokenStoreImpl
 import dev.mcd.untitledcaloriesapp.data.common.api.di.Unauthenticated
-import dev.mcd.untitledcaloriesapp.domain.common.time.TimeProvider
+import dev.mcd.untitledcaloriesapp.domain.common.time.DateTimeProvider
 import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
 class AuthModule {
     @Provides
-    fun authApi(@Unauthenticated retrofit: Retrofit, timeProvider: TimeProvider): AuthApi {
-        return AuthApiImpl(retrofit, timeProvider)
+    fun authApi(@Unauthenticated retrofit: Retrofit, dateTimeProvider: DateTimeProvider): AuthApi {
+        return AuthApiImpl(retrofit, dateTimeProvider)
     }
 
     @Provides

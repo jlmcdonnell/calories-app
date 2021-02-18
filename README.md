@@ -22,3 +22,9 @@ Simple calorie tracker app using supabase.io as a backend
 - Persists preferences and settings with: [Jetpack DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
 - Dependency Injection using [Dagger Hilt](https://dagger.dev/hilt/)
 - MVVM & Clean Architecture
+
+## TODO
+- Improve tests coverage once feature volatility is lower
+- Handle configuration changes
+- Fix token refresh functionality
+- Handle unexpected 401s

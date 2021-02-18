@@ -16,13 +16,13 @@
             app:popUpTo="@id/nav_graph" />
 
         <action
-            android:id="@+id/actionCreateEntry"
-            app:destination="@id/createEntry" />
+            android:id="@+id/actionSaveEntry"
+            app:destination="@id/saveEntry" />
     </fragment>
 
     <fragment
-        android:id="@+id/createEntry"
-        android:name="dev.mcd.untitledcaloriesapp.presentation.createentry.CreateEntryFragment">
+        android:id="@+id/saveEntry"
+        android:name="dev.mcd.untitledcaloriesapp.presentation.createentry.SaveEntryFragment">
         <action
             android:id="@+id/action_createEntry_to_home"
             app:destination="@id/home"

@@ -5,7 +5,7 @@ import dev.mcd.untitledcaloriesapp.data.auth.api.serializer.LoginRequest
 import dev.mcd.untitledcaloriesapp.data.auth.api.serializer.SignUpRequest
 import dev.mcd.untitledcaloriesapp.data.common.extensions.asException
 import dev.mcd.untitledcaloriesapp.domain.auth.entity.AccessToken
-import dev.mcd.untitledcaloriesapp.domain.common.time.TimeProvider
+import dev.mcd.untitledcaloriesapp.domain.common.time.DateTimeProvider
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -21,7 +21,7 @@ interface AuthApi {
 
 class AuthApiImpl(
     retrofit: Retrofit,
-    private val timeProvider: TimeProvider,
+    private val dateTimeProvider: DateTimeProvider,
 ) : AuthApi {
 
     interface API {
@@ -58,7 +58,7 @@ class AuthApiImpl(
         return if (response.isSuccessful) {
             val authResponse = response.body()!!
             val tokenTtl = TimeUnit.MINUTES.toMillis(authResponse.expiresInMinutes)
-            val tokenExpiry = timeProvider.now + tokenTtl
+            val tokenExpiry = dateTimeProvider.now + tokenTtl
 
             AccessToken(
                 accessToken = authResponse.accessToken,

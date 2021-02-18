@@ -4,12 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.mcd.untitledcaloriesapp.data.auth.api.AuthApi
-import dev.mcd.untitledcaloriesapp.data.auth.store.AccessTokenStore
-import dev.mcd.untitledcaloriesapp.data.common.AuthTokenInterceptor
+import dev.mcd.untitledcaloriesapp.data.auth.api.ApiKeyInterceptor
+import dev.mcd.untitledcaloriesapp.data.auth.api.AuthTokenInterceptor
+import dev.mcd.untitledcaloriesapp.data.auth.api.UnauthorizedErrorInterceptor
 import dev.mcd.untitledcaloriesapp.data.env.Environment
-import dev.mcd.untitledcaloriesapp.domain.common.time.TimeProvider
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -19,38 +17,23 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class ApiModule {
 
     @Provides
-    @AuthInterceptor
-    fun authInterceptor(accessTokenStore: AccessTokenStore, authApi: AuthApi, timeProvider: TimeProvider): Interceptor {
-        return AuthTokenInterceptor(accessTokenStore, authApi, timeProvider)
-    }
-
-    @Provides
-    @ApiKeyInterceptor
-    fun apiKeyInterceptor(environment: Environment): Interceptor {
-        return Interceptor { chain ->
-            chain.request().newBuilder()
-                .addHeader("apiKey", environment.supabaseApiKey)
-                .build()
-                .let(chain::proceed)
-        }
-    }
-
-    @Provides
     @Authenticated
     fun authenticatedOkClient(
-        @AuthInterceptor authInterceptor: Interceptor,
-        @ApiKeyInterceptor apiKeyInterceptor: Interceptor,
+        authInterceptor: AuthTokenInterceptor,
+        apiKeyInterceptor: ApiKeyInterceptor,
+        unauthorizedErrorInterceptor: UnauthorizedErrorInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addNetworkInterceptor(authInterceptor)
             .addNetworkInterceptor(apiKeyInterceptor)
+            .addInterceptor(unauthorizedErrorInterceptor)
             .build()
     }
 
     @Provides
     @Unauthenticated
     fun unauthenticatedOkClient(
-        @ApiKeyInterceptor apiKeyInterceptor: Interceptor,
+        apiKeyInterceptor: ApiKeyInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addNetworkInterceptor(apiKeyInterceptor)

@@ -1,19 +1,19 @@
-package dev.mcd.untitledcaloriesapp.data.common
+package dev.mcd.untitledcaloriesapp.data.auth.api
 
-import dev.mcd.untitledcaloriesapp.data.auth.api.AuthApi
 import dev.mcd.untitledcaloriesapp.data.auth.store.AccessTokenStore
 import dev.mcd.untitledcaloriesapp.domain.auth.entity.AccessToken
-import dev.mcd.untitledcaloriesapp.domain.common.time.TimeProvider
+import dev.mcd.untitledcaloriesapp.domain.common.time.DateTimeProvider
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class AuthTokenInterceptor(
+class AuthTokenInterceptor @Inject constructor(
     private val accessTokenStore: AccessTokenStore,
     private val authApi: AuthApi,
-    private val timeProvider: TimeProvider,
+    private val dateTimeProvider: DateTimeProvider,
 ) : Interceptor {
 
     companion object {
@@ -44,7 +44,7 @@ class AuthTokenInterceptor(
 
     private fun shouldRefreshToken(accessToken: AccessToken): Boolean {
         val refreshAt = accessToken.tokenExpiry - TimeUnit.MINUTES.toMillis(REFRESH_THRESHOLD_MINUTES)
-        return timeProvider.now > refreshAt
+        return dateTimeProvider.now > refreshAt
     }
 
     private suspend fun refreshToken(accessToken: AccessToken): AccessToken {
